@@ -11,9 +11,7 @@ Special attention is given to the specifics of medical data: severe class imbala
 * **Task:** Binary classification (Normal / Pneumonia).
 * **Architecture:** Custom Convolutional Neural Network (CNN).
 * **Key Features:**
-  * Handling severe class imbalance using a weighted loss function (`CrossEntropyLoss(weight=...)`).
   * Data augmentation via random affine transformations.
-  * Decision threshold tuning to achieve a medical-grade Sensitivity (Recall) of $\ge 0.95$.
   * **Explainable AI (XAI):** Implementation of **Grad-CAM** and **Occlusion Sensitivity** to visualize the regions (heatmaps) the neural network focuses on when making a diagnosis.
 
 ### Part 2: Hippocampus Segmentation on MRI (3D)
@@ -21,14 +19,11 @@ Special attention is given to the specifics of medical data: severe class imbala
 * **Task:** Segmentation of the anterior and posterior parts of the hippocampus.
 * **Architecture:** 2D U-Net (processing 3D volumes as a series of 2D axial slices with zero-padding).
 * **Key Features:**
-  * MRI-specific normalization: intensity clipping (0.5th - 99.5th percentiles) and Z-score normalization.
-  * Loss function: A combination of `CrossEntropy` and `Soft Dice Loss` to handle the heavily dominant background class.
   * Post-processing: Extracting the Largest Connected Component to eliminate noise.
   * **Volumetry (Quantitative Biomarkers):** Converting predicted pixels into physical volume ($mm^3$) and evaluating performance using Mean Absolute Percentage Error (MAPE) and Pearson correlation. Further evaluation using 3D Bounding Boxes and 3D Intersection over Union (IoU).
 
 ## 🚀 Tech Stack
 
-* **Python 3.x**
 * **PyTorch** / **Torchvision** (Deep Learning framework)
 * **NumPy** / **SciPy** (Matrix computations and image processing algorithms)
 * **NiBabel** (Reading and writing medical neuroimaging formats like `.nii.gz`)
